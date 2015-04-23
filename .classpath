@@ -101,5 +101,5 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xwork-2.1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/yao-config.1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/yao-util.1.0.jar"/>
-	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
