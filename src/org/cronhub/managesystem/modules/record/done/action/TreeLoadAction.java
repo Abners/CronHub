@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,12 +25,13 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TreeLoadAction extends ActionSupport {
 	private static final String prefixTableName = Params.TABLE_TASK_RECORD_DONE;
-	private static final String icon_history = "/res/icons/16x16/clock.png";
-	private static final String icon_today = "/res/icons/16x16/hourglass_add.png";
+	private static final String icon_history = "res/icons/16x16/clock.png";
+	private static final String icon_today = "res/icons/16x16/hourglass_add.png";
 	private static final SimpleDateFormat monthFormat = new SimpleDateFormat("yyyyMM");
 	private static final SimpleDateFormat dayFormat = new SimpleDateFormat("yyyyMMdd");
 	private  IDoneRecordDao doneRecordDone;
@@ -64,14 +66,20 @@ public class TreeLoadAction extends ActionSupport {
 			int month = cal.get(Calendar.MONTH)+1; //Calendar的Month居然是从0开始的，详见API：一年中的第一个月是 JANUARY，它为 0；最后一个月取决于一年中的月份数。
 			int day = cal.get(Calendar.DAY_OF_MONTH);//而Calendar的DAY_OF_MONTH是从1开始的,详见API:get 和 set 的字段数字，指示一个月中的某天。它与 DATE 是同义词。一个月中第一天的值为 1。 
 			if((todayCalendar.get(Calendar.MONTH)+1) == month && todayCalendar.get(Calendar.YEAR) == year && todayCalendar.get(Calendar.DAY_OF_MONTH) == day){
-				dayElement.addAttribute("icon", icon_today).addAttribute("type", "day");
+				dayElement.addAttribute("icon", makeUrlPath(icon_today)).addAttribute("type", "day");
 			}else{
-				dayElement.addAttribute("icon", icon_history).addAttribute("type", "day");
+				dayElement.addAttribute("icon", makeUrlPath(icon_history)).addAttribute("type", "day");
 			}
 			dayElement.addAttribute("id",dayFormat.format(cal.getTime())).addAttribute("name", String.format("%s月%s日", month,day)).addAttribute("isParent", "false").addAttribute("tableName", tableName);
 			days.add(dayElement);
 		}
 		return days;
+	}
+	private String makeUrlPath(String iconToday) {
+		ActionContext ac = ActionContext.getContext();
+		HttpServletRequest request = (HttpServletRequest) ac.get(ServletActionContext.HTTP_REQUEST);
+		String path = request.getContextPath();
+		return request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"+iconToday;
 	}
 	public String createInitTree(){
 		HttpServletResponse response= ServletActionContext.getResponse();
