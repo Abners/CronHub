@@ -8,7 +8,7 @@ label.error {
 	position: absolute;
 	left: 380px;
 	top: 15px;
-}
+} 
 label.valid {
 	background: url(../../icons/16x16/accept.png) no-repeat 3px 2px;
 }

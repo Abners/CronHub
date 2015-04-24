@@ -8,7 +8,7 @@
  * Plugin:   mockjax
  * Author:   Jonathan Sharp (http://jdsharp.com)
  * License:  MIT,GPL
- * 
+ *  
  * Copyright (c) 2010 appendTo LLC.
  * Dual licensed under the MIT or GPL licenses.
  * http://appendto.com/open-source-licenses

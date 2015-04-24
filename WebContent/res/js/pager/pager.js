@@ -9,7 +9,7 @@ function getObjectKeys(object)
     var keys = [];
     for (var property in object)
     {
-      keys.push(property);
+      keys.push(property); 
     }
     return keys;
 }

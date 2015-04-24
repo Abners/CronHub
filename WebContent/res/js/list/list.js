@@ -6,7 +6,7 @@ $(function() {
 		$(this).removeClass('grid-tr-hover');
 	});
 	
-	// 全选/全不选
+	// 全选/全不选 
 	$('.grid thead input[type=checkbox]').click(function() {
 		if($(this).attr('checked')) {
 			$('.grid tbody input[type=checkbox]').attr('checked', true);

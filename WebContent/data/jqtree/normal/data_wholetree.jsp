@@ -4,7 +4,7 @@ response.setDateHeader("expires", 0);
 
 String flag = request.getParameter("flag");
 if(flag != null) {
-	System.out.println(flag);
+	System.out.println(flag); 
 }
 Thread.sleep(500);
 

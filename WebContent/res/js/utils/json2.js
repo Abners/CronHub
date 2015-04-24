@@ -9,7 +9,7 @@
     See http://www.JSON.org/js.html
 
     This file creates a global JSON object containing two methods: stringify
-    and parse.
+    and parse. 
 
         JSON.stringify(value, replacer, space)
             value       any JavaScript value, usually an object or array.

@@ -7,7 +7,7 @@ dialog_ct.gif
 dialog_ct.png
 dialog_lb.gif
 dialog_lb.png
-dialog_lt.gif
+dialog_lt.gif 
 dialog_lt.png
 dialog_mlm.gif
 dialog_mlm.png

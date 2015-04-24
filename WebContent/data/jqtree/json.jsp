@@ -3,7 +3,7 @@ response.setHeader("cache-control", "no-cache");
 response.setDateHeader("expires", 0);
 
 String flag = request.getParameter("flag");
-if(flag != null) {
+if(flag != null) { 
 	System.out.println(flag);
 }
 Thread.sleep(500);

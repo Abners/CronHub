@@ -8,7 +8,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  */
 
-jQuery.extend( jQuery.easing,
+jQuery.extend( jQuery.easing, 
 {
 	easeIn: function (x, t, b, c, d) {
 		return jQuery.easing.easeInQuad(x, t, b, c, d);

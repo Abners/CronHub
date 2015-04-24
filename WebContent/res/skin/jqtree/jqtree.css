@@ -4,7 +4,7 @@
 	height: 20px;
 	line-height: 20px;
 	cursor: pointer;
-	white-space: nowrap;
+	white-space: nowrap; 
 }
 .jqtree-node-hover {
 	background: #d0e5f5;

@@ -8,7 +8,7 @@ function usage(){
 	echo "-p  cronhub center server's port used for download daemon's jar and  jdk and jsvc  and so on"
 }
 if [ $# -ne 8 ];
-then
+then 
 :<<BLOCK
     echo "please input the directory path that you want to install";
     read install_path;

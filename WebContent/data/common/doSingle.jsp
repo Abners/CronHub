@@ -3,7 +3,7 @@ response.setHeader("cache-control", "no-cache");
 response.setDateHeader("expires", 0);
 
 String id = request.getParameter("id");
-//System.out.println(id);
+//System.out.println(id); 
 
 out.println("<style>body {font-size: 12px; font-family: '微软雅黑';}</style>");
 

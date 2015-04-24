@@ -7,7 +7,7 @@ function Tab(options) {
 	this.selectedIndex = 0;
 	
 	this.tabs = null;
-	this.panels = null;
+	this.panels = null; 
 	
 	$.extend(this, options);
 	

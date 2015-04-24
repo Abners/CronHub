@@ -6,7 +6,7 @@
  * extend: 向后台传递的附加字段，需要传给后台的其他输入元素的id数组
  * message: 控件值不唯一时，页面显示的信息
  */
-$.extend({
+$.extend({ 
 	uniqueValidate: function(validateName, url, extend, message) {
 		jQuery.validator.addMethod(validateName, function(value, element) {
 			var data = new Object();

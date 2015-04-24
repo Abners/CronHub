@@ -2,7 +2,7 @@
 response.setHeader("cache-control", "no-cache");
 response.setDateHeader("expires", 0);
 
-out.print("[");
+out.print("["); 
 out.print("    {\"id\": \"wwui_01\", \"name\": \"系统管理\", \"nodes\": [");
 out.print("        {\"id\": \"wwui_01_01\", \"name\": \"首页\", \"url\": \"default.html\"},");
 out.print("        {\"id\": \"wwui_01_02\", \"name\": \"列表\", \"url\": \"list.html\"},");

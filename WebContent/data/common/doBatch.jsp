@@ -9,7 +9,7 @@ out.println("<style>body {font-size: 12px; font-family: '微软雅黑';}</style>
 
 out.println("<p>批量处理的ids数组是：</p>");
 
-out.println("<p>[");
+out.println("<p>["); 
 
 for(int i = 0; i < ids.length; i++) {
 	if(i > 0) {

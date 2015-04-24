@@ -6,7 +6,7 @@
 .toolbar a, .formtable a {
 	border: 1px solid #c5dbec;
 	display: inline-block;
-	height: 25px;
+	height: 25px; 
 	line-height: 25px;
 	padding: 0 5px;
 	cursor: pointer;

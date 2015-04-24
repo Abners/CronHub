@@ -5,7 +5,7 @@ then
     echo "please input port number.for example 2012";
     exit
 fi
-current_path=`pwd`;
+current_path=`pwd`; 
 jdk_bin="jdk.bin";
 jdk_bin_path=$current_path"/"$jdk_bin;
 java_home=$current_path"/jdk1.6.0_30";

@@ -10,7 +10,7 @@ function AjaxModel(options) {
 	$.extend(this, options);
 }
 /**
- * load()
+ * load() 
  */
 AjaxModel.prototype.load = function() {
 	var _this = this;

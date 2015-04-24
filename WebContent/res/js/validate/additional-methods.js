@@ -11,7 +11,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-(function() {
+(function() { 
 	
 	function stripHtml(value) {
 		// remove html tags and space chars

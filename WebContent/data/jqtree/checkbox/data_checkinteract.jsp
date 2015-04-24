@@ -4,7 +4,7 @@ response.setDateHeader("expires", 0);
 
 Thread.sleep(500);
 
-out.print("[");
+out.print("["); 
 out.print("    {\"id\": \"01\", \"name\": \"电影\", \"nodes\": [");
 out.print("        {\"id\": \"001\", \"name\": \"盗梦空间\", \"nodes\": []},");
 out.print("        {\"id\": \"002\", \"name\": \"怪物史瑞克4\", \"nodes\": []},");

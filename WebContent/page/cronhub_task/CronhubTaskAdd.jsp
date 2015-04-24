@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="<%=basePath %>res/js/zdialog/zDialog.js"></script> 
 <link rel="stylesheet" type="text/css" href="<%=basePath %>res/skin/all.css" />
 
-<script>
+<script> 
 $(function(){
 	// 表单校验属性设置
 	$.metadata.setType("attr", "validate");

@@ -5,7 +5,7 @@ response.setDateHeader("expires", 0);
 String id = request.getParameter("id");
 Thread.sleep(500);
 
-if(id == null) {
+if(id == null) { 
 	out.print("[");
 	out.print("    {\"id\": \"01\", \"name\": \"电影\", \"isParent\": true},");
 	out.print("    {\"id\": \"02\", \"name\": \"手机游戏\", \"isParent\": true},");

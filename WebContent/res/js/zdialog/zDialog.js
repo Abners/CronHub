@@ -4,7 +4,7 @@
  * QQ：4845587 E-mail:wzh@wangzhaohui.com
  * 最后修正：2015-4-23
  **/
-getRootPath=function () {
+getRootPath=function () { 
     //获取当前网址，如： http://localhost:8080/ems/Pages/Basic/Person.jsp
     var curWwwPath = window.document.location.href;
     //获取主机地址之后的目录，如： /ems/Pages/Basic/Person.jsp

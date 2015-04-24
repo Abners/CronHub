@@ -6,7 +6,7 @@ String flag = request.getParameter("flag");
 if(flag != null) {
 	System.out.println(flag);
 }
-Thread.sleep(500);
+Thread.sleep(500); 
 
 out.print("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 out.print("<root>");

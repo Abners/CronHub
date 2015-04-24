@@ -8,5 +8,5 @@ function highlight(msg) {
 function highlight_ok(msg){
 	var tip = $('<a class="highlight"><img src="'+getRootPath()+'/res/icons/16x16/accept.png" />'+msg+'</a>');
 	$('.tab').append(tip);
-	tip.fadeOut(10000);
+	tip.fadeOut(10000); 
 }

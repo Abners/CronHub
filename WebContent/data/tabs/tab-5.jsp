@@ -13,4 +13,5 @@ out.println("<div class=\"list-item\"><div class=\"list-item-l\"><img src=\"res/
 out.println("<div class=\"list-item\"><div class=\"list-item-l\"><img src=\"res/icons/16x16/application_form.png\" />安东尼绝杀骑士</div><span class=\"list-item-r\">1526</span></div>");
 out.println("<div class=\"list-item\"><div class=\"list-item-l\"><img src=\"res/icons/16x16/application_form.png\" />张越去世</div><span class=\"list-item-r\">986</span></div>");
 out.println("<div class=\"tab-more\"><a href=\"#\">更多»</a></div>");
+
 %>

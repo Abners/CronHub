@@ -9,7 +9,7 @@
 		<node id="wwui-01-03-02" name="10月20日" url="form2.html"
 			icon="/res/icons/16x16/clock.png" />
 		<node id="wwui-01-03-02" name="10月19日" url="form2.html"
-			icon="/res/icons/16x16/clock.png" />
+			icon="/res/icons/16x16/clock.png" /> 
 		<node id="wwui-01-03-02" name="10月18日" url="form2.html"
 			icon="/res/icons/16x16/clock.png" />
 	</node>

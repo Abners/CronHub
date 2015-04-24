@@ -9,7 +9,7 @@ String loginname = request.getParameter("loginname");
 //String idcard = request.getParameter("idcard");
 
 if(loginname.equals("asdasd")) {
-	out.print("0");
+	out.print("0"); 
 }
 else {
 	out.print("1");

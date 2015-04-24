@@ -8,7 +8,7 @@
 .formtable label {
 	display: inline-block;
 }
-.formtable td {
+.formtable td { 
 	border-bottom: 1px dotted #ccc;
 	padding: 10px;
 	position: relative;

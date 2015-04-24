@@ -10,7 +10,7 @@
 		if(isNaN(parseInt(handle.root.style.top)))handle.root.style.top="0px";
 		handle.root.onDragStart=new Function();
 		handle.root.onDragEnd=new Function();
-		handle.root.onDrag=new Function();
+		handle.root.onDrag=new Function(); 
 		if (e !=null) {
 			var handle=Drag.obj=handle;
 			e=Drag.fixe(e);

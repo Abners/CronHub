@@ -4,7 +4,7 @@ response.setDateHeader("expires", 0);
 
 String id = request.getParameter("id");
 Thread.sleep(500);
-
+ 
 out.print("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 out.print("<root>");
 

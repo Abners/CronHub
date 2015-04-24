@@ -6,7 +6,7 @@
 			url="page/cronhub_record/done/CronhubHistoryStruct.html"
 			icon="res/icons/16x16/clock.png" />
 		<menu id="33" name="未完成列表" url="page/cronhub_record/undo/CronhubHistoryStruct.html" icon="res/icons/16x16/clock_go.png"/>
-			
+			 
 	</menu>
 	<menu id="ww" name="调度任务管理">
 	<!-- 

@@ -7,7 +7,7 @@ then
 fi
 #current_path example /opt/modules/daemon  
 current_path=`pwd`;
-jdk_bin="jdk.bin";
+jdk_bin="jdk.bin"; 
 jdk_bin_path=$current_path"/"$jdk_bin;
 java_home=$current_path"/jdk1.6.0_30";
 echo "please input the cronhub center server's ip..."

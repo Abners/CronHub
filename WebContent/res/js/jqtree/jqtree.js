@@ -7,7 +7,7 @@ function AjaxModel(options) {
 	this.dataType = 'json'; // 返回值类型，默认json
 	this.timeout = 10000;   // 请求超时时间，默认10秒
 	
-	$.extend(this, options);
+	$.extend(this, options); 
 }
 /**
  * load()

@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <title>list</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
+ 
 <script type="text/javascript" src="<%=basePath %>res/js/jquery/jquery-1.6.2.min.js"></script>
 
 <script type="text/javascript" src="<%=basePath %>res/js/list/list.js"></script>

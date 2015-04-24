@@ -7,4 +7,4 @@ String.prototype.replaceAll = function(reallyDo, replaceWith, ignoreCase) {
     } else {  
         return this.replace(reallyDo, replaceWith);  
     }
-}
+} 

@@ -3,7 +3,7 @@
 xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd"> -->
+http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd"> --> 
 
 <!-- 删去2.5的头，貌似不支持EL表达式 -->
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
