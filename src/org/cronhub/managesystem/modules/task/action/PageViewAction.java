@@ -102,4 +102,15 @@ public class PageViewAction extends ActionSupport {
 		PageIOUtils.printToPage("success");
 		return NONE;
 	}
+	
+	/**
+	 * 批量启用或禁用任务
+	 * @return
+	 */
+	public String enableOrDisableTask(){
+		String taskIds = ServletActionContext.getRequest().getParameter("taskIds");
+		this.dao.updateTaskStatusById(taskIds);
+		PageIOUtils.printToPage("success");
+		return NONE;
+	}
 }

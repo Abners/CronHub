@@ -20,6 +20,8 @@
 				/page/cronhub_task/CronhubTaskView.jsp
 			</result>
 		</action>
+		<action name="enableOrDisableTask" class="taskPageViewAction" method="enableOrDisableTask">
+		</action>
 		<action name="task_prev_page_view" class="taskPageViewAction" method="findPrevPageNo">
 			<result name="success" >
 				/page/cronhub_task/CronhubTaskView.jsp

@@ -38,7 +38,7 @@ import com.baofeng.dispatchexecutor.utils.ReplaceRealCmdUtils;
  *
  */
 public class PassiveModeNotifyCrontab extends ContextLoaderListener{
-	private static final String wherePassiveRunMode = " WHERE run_mode = 0 AND is_process_node =0";
+	private static final String wherePassiveRunMode = " WHERE run_mode = 0 AND is_process_node =0 and task_status='1'";
 	private ITaskDao taskDao;
 	private IDoneRecordDao doneRecordDao;
 	private IUndoRecordDao undoRecordDao;

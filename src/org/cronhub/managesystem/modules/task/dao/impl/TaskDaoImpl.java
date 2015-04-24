@@ -1,14 +1,19 @@
 package org.cronhub.managesystem.modules.task.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.cronhub.managesystem.commons.dao.BaseRowMapper;
 import org.cronhub.managesystem.commons.dao.bean.Task;
 import org.cronhub.managesystem.commons.dao.config.AssociateDeleteConfig;
 import org.cronhub.managesystem.commons.dao.config.FillConfig;
+import org.cronhub.managesystem.commons.logger.AppLogger;
 import org.cronhub.managesystem.modules.daemon.dao.IDaemonDao;
 import org.cronhub.managesystem.modules.record.done.dao.IDoneRecordDao;
 import org.cronhub.managesystem.modules.task.dao.ITaskDao;
+import org.hibernate.util.XMLHelper.ErrorLogger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 
@@ -31,7 +36,7 @@ public class TaskDaoImpl implements ITaskDao {
 
 	@Override
 	public void insert(Task task) {
-		final String sql = "INSERT INTO task(daemon_id,cron_exp,shell_cmd,must_replace_cmd,run_mode,run_start_reportaddress,run_end_reportaddress,is_process_node,is_process_chain,process_tasks,comment,operate_uid,update_time,is_redo,end_redo_times) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		final String sql = "INSERT INTO task(daemon_id,cron_exp,shell_cmd,must_replace_cmd,run_mode,run_start_reportaddress,run_end_reportaddress,is_process_node,is_process_chain,process_tasks,comment,operate_uid,update_time,is_redo,end_redo_times,task_status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		this.jdbcTemplate.update(sql, new Object[] { task.getDaemon_id(),
 				task.getCron_exp(), task.getShell_cmd(),
 				task.getMust_replace_cmd(), task.getRun_mode(),
@@ -40,12 +45,15 @@ public class TaskDaoImpl implements ITaskDao {
 				task.getIs_process_chain(),
 				task.getProcess_tasks(), task.getComment(),
 				task.getOperate_uid(), task.getUpdate_time(),
-				task.getIs_redo(), task.getEnd_redo_times() });
+				task.getIs_redo(), task.getEnd_redo_times(),"1" });
 	}
 
 	@Override
 	public List<Task> findByPage(String orderLimit, FillConfig fillConfig) {
-		String sql = "SELECT task.id as id,daemon_id,cron_exp,shell_cmd,must_replace_cmd,run_mode,run_start_reportaddress,run_end_reportaddress,is_process_node,is_process_chain,process_tasks,task.comment as comment,operate_uid,task.update_time,is_redo,end_redo_times,daemon.machine_ip as machine_ip FROM task  left join daemon on task.daemon_id = daemon.id "+orderLimit;
+		String sql = "SELECT task.id as id,daemon_id,cron_exp,shell_cmd,must_replace_cmd,run_mode,run_start_reportaddress,"
+				+ "run_end_reportaddress,is_process_node,is_process_chain,process_tasks,task.comment as comment,"
+				+ "operate_uid,task.update_time,is_redo,end_redo_times,daemon.machine_ip as machine_ip,task.task_status as task_status"
+				+ " FROM task  left join daemon on task.daemon_id = daemon.id "+orderLimit;
 		List<Task> tasks = this.jdbcTemplate.query(sql, new BaseRowMapper(Task.class));
 		if(fillConfig.getFillDaemon()){
 			for(Task task : tasks){
@@ -110,6 +118,36 @@ public class TaskDaoImpl implements ITaskDao {
 	public Integer findCount(String whereSql) {
 		String sql = "SELECT COUNT(*) FROM task "+whereSql;
 		return this.jdbcTemplate.queryForInt(sql);
+	}
+
+	@Override
+	public void updateTaskStatusById(String taskIds) {
+		if(StringUtils.isNotBlank(taskIds)){
+			String[] taskId = StringUtils.split(taskIds,",");
+			List<String> updateSql = new ArrayList<String>();
+			String sql = "";
+			for(String task:taskId){
+				String task_status = (String) this.jdbcTemplate.queryForObject("select task_status from task where id=?",new Object[]{Integer.valueOf(task)},String.class);
+				if(task_status!=null){
+					sql = "update task set task_status=%s where id=%s";
+					String resultSql = null;
+					if(task_status.equals("1")){
+						resultSql = String.format(sql, "'0'",Integer.valueOf(task));
+					}else{
+						resultSql = String.format(sql, "'1'",Integer.valueOf(task));
+					}
+					updateSql.add(resultSql);
+				}
+			}
+			if(!updateSql.isEmpty()){
+				try{
+					jdbcTemplate.batchUpdate( updateSql.toArray(new String[updateSql.size()]));
+				}catch(Exception e){
+					AppLogger.errorLogger.error("更新任务状态出错:{}", e);
+					throw e;
+				}
+			}
+		}
 	}
 
 

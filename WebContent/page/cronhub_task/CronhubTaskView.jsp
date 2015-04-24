@@ -78,6 +78,8 @@ $(function() {
 	hideLongText();
 	$("#btnCmdUnfold").bind("click",{"name":"unfoldBtn"},cmdfoldreverse);
 	$("#btnCmdfold").bind("click",	{"name":"foldBtn"},cmdfoldreverse);
+	$("#btnEnable").bind("click",{"name":"enable"},btnEnableOrDisableClick);
+	$("#btnDisable").bind("click",{"name":"disable"},btnEnableOrDisableClick);
 	highlight_ok('crontab调度任务持续进行中...');
 	setInterval("highlight_ok('crontab调度任务持续进行中...')",11000);
 });
@@ -202,6 +204,44 @@ function validationCmd(cmd){
 	if(cmd=="" || cmd.indexOf("请输入命令")>=0)return false;
 	return true;
 }
+function btnEnableOrDisableClick(event){
+	var checkCount=0;
+	var id = '';
+	$('.grid tbody input[type=checkbox]').each(function(i, o) {
+		if($(o).attr('checked')) {
+			id += $(o).val()+',';
+			checkCount++;
+		}
+	});
+	
+	if(checkCount<=0){
+		Dialog.alert("请选中至少一条记录进行操作");
+		return;
+	}
+	id = id.substring(0,id.length-1);
+	Dialog.confirm("是否确认执行此项操作?",function(){
+		$.ajax({
+			url: "task/enableOrDisableTask.action",
+			data: {"taskIds":id},
+			cache: false,
+			async: true,
+			type: 'POST',
+			dataType: 'text',
+			timeout: 10000,
+			error: function() {
+				Dialog.alert('对不起，服务器响应超时，请联系管理员');
+			},
+			success: function(result) {
+				if(result=="success"){
+					Dialog.alert("更新状态成功");
+					window.location.reload();
+				}else{
+					Dialog.alert("更新状态失败");
+				}
+			}
+		});
+	});	
+}
 </script>
 <style type="text/css">
 img[src="<%=basePath %>res/icons/16x16/magnifier.png"]{
@@ -216,6 +256,7 @@ img[src="<%=basePath %>res/icons/16x16/magnifier.png"]{
 	</div>
 	<div class="toolbar">
 		<a id="btnImmediateExec"><img src="<%=basePath %>res/icons/16x16/application_osx_terminal.png" />当场执行</a>
+		<a id="btnEnable"><img src="<%=basePath %>res/icons/16x16/drive_network.png"/>启用/禁用</a>
 		<a id="btnCmdUnfold"><img src="<%=basePath %>res/icons/16x16/table_sort.png" />展开</a>
 		<a id="btnCmdfold"><img src="<%=basePath %>res/icons/16x16/table_sort.png" />折叠</a>
 		<input id="txtMachineIp" type="text" valid="validationIp" stat="like" trigger="click" trigger_target="btnSearchByIp" invalid_msg="请填入正确ip的一部分" name="filter_state_machine_ip" value="请输入机器ip" class="input-shorttext" onclick="if('请输入机器ip' == $(this).val()){$(this).val('');}"/><a id="btnSearchByIp"><img src="<%=basePath %>res/icons/16x16/application_form_magnify.png" />按照ip搜索</a>
@@ -242,7 +283,8 @@ img[src="<%=basePath %>res/icons/16x16/magnifier.png"]{
 				<th><span><select name="filter_state_is_process_node" trigger="change" stat="equal" trigger_target="this"><option value="-1">任务类型</option><option  value="0">单任务</option><option value="1">流程任务</option></select><img src="<%=basePath %>res/icons/16x16/magnifier.png"/></span></th>
 				<th><span>通信</span></th>
 				<th><span>更新时间</span></th>
-				<th width="15"><span>删除</span></th>				
+				<th><span>状态</span></th>
+				<th width="15"><span>操作</span></th>				
 			</tr>
 		</thead>
 		<tbody>
@@ -250,7 +292,9 @@ img[src="<%=basePath %>res/icons/16x16/magnifier.png"]{
 			<tr id="<s:property value='#taskbean.id' />">
 				<td align="center"><span><input type="checkbox" value="<s:property value='#taskbean.id' />" /></span></td>
 				<td align="center"><span><s:property value="#taskbean.id" /></span></td>
-				<td align="center"><span><s:property value="#taskbean.daemon_id" /><img title="指派新任务" onClick="parent.daemon_id=<s:property value="#taskbean.daemon_id" />;parent.machine_ip='<s:property value="#taskbean.daemon.machine_ip" />';parent.machine_port=<s:property value="#taskbean.daemon.machine_port" />;window.location='/page/cronhub_task/CronhubTaskAdd.jsp';" src="<%=basePath %>res/icons/16x16/table_add.png" style="cursor:pointer"/></span></td>
+				<td align="center"><span><s:property value="#taskbean.daemon_id" /><img title="指派新任务" 
+				<s:if test="#taskbean.task_status==1">onClick="parent.daemon_id=<s:property value="#taskbean.daemon_id" />;parent.machine_ip='<s:property value="#taskbean.daemon.machine_ip" />';parent.machine_port=<s:property value="#taskbean.daemon.machine_port" />;window.location='<%=basePath%>page/cronhub_task/CronhubTaskAdd.jsp';" 
+				src="<%=basePath %>res/icons/16x16/table_add.png" style="cursor:pointer"</s:if><s:else>src="<%=basePath %>res/icons/16x16/tab_add_green.png"</s:else> /></span></td>
 				<td align="center" class="cmdClass"><s:property value="#taskbean.daemon.daemon_version_name" /></td>
 				<td align="center"><span><s:property value="#taskbean.daemon.machine_ip" /></span></td>
 				<td align="center"><span><s:property value="#taskbean.daemon.machine_port" /></span></td>
@@ -265,6 +309,7 @@ img[src="<%=basePath %>res/icons/16x16/magnifier.png"]{
 				<td align="center"><span>${taskbean.is_process_node == false ? '单任务':'流程任务'}</span></td>
 				<td align="center"><span><s:if test="#taskbean.daemon.conn_status==true"><font style="color:green">通信正常</font></s:if><s:else><font style="color:red">通信失败</font></s:else></span></td>
 				<td align="center"><span><s:date name="#taskbean.update_time" format="yyyy-MM-dd HH:mm:ss"/></span></td>
+				<td align="center"><span>${taskbean.task_status == 0?'禁用':'启用' }</span></td>
 				<td align="center"><span><img title="<s:property value='#taskbean.id' />" name="del" style="cursor:pointer" src="<%=basePath %>res/icons/16x16/cancel.png"/></span></td>
 				
 			</tr>

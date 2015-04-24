@@ -19,6 +19,7 @@ public class Task {
 	private Date update_time;
 	private Boolean is_redo;
 	private Integer end_redo_times;
+	private String task_status;
 	private Daemon daemon;
 	public Daemon getDaemon() {
 		return daemon;
@@ -41,6 +42,13 @@ public class Task {
 	}
 	public String getCron_exp() {
 		return cron_exp;
+	}
+	
+	public String getTask_status() {
+		return task_status;
+	}
+	public void setTask_status(String task_status) {
+		this.task_status = task_status;
 	}
 	public void setCron_exp(String cron_exp) {
 		this.cron_exp = cron_exp;

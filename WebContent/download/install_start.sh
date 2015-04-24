@@ -52,7 +52,7 @@ cd $install_path;
 jdk_bin="jdk.bin";
 jdk_bin_path=$install_path"/"$jdk_bin;
 java_home=$install_path"/jdk1.6.0_30";
-base_url="http://${center_server_ip}:${center_server_port}/download/";
+base_url="http://${center_server_ip}:${center_server_port}/cronHub/download/";
 jdk_download_url=$base_url"jdk-6u30-linux-x64.bin"
 jsvc_zip="jsvc.zip";
 jsvc_dir="jsvc";

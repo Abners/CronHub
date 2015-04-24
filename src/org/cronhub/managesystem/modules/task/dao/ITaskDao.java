@@ -15,4 +15,5 @@ public interface ITaskDao {
 	public void deleteById(Long id,AssociateDeleteConfig config);
 	public List<Task> findByDaemonId(Long id);
 	public Integer findCount(String whereSql);
+	public void updateTaskStatusById(String taskIds);
 }
